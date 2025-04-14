@@ -336,7 +336,7 @@
             </div>
             <div id="fishAudio" class="line" style="display: none;">
                 <label id="speechLlmTitle" for="fishAPIToken">fish.audio API Token:</label>
-                <input type="text" id="fishAPIToken" name="fishAPIToken" placeholder="fish.audio API Token">
+                <input type="text" id="fishAPIToken" name="fishAPIToken" placeholder="fish.audio API Token" value="09e61c45d591475f8f4a103157bc3d6e">
             </div>
             <div class="line">
                 <label id="speaker1Title" for="speaker1Id">Speaker #1 Name:</label>
@@ -590,17 +590,33 @@
     speechModelElement.addEventListener('change', function () {
         const selectedOption = speechModelElement.options[speechModelElement.selectedIndex];
         const selectedValue = selectedOption.value;
+        const selectedLangOption = languageElement.options[languageElement.selectedIndex];
+        const selectedLangValue = selectedLangOption.value;
 
         if (selectedValue === "GSV") {
             document.getElementById('GSVNode').style.display = "flex";
             document.getElementById('fishAudio').style.display = "none";
             document.getElementById('speaker1Title').innerText = "Speaker #1 Name:";
             document.getElementById('speaker2Title').innerText = "Speaker #2 Name:";
+            if (selectedLangValue === "ZH") {
+                document.getElementById('speaker1Id').value = "cctv_male";
+                document.getElementById('speaker2Id').value = "cctv_female";
+            }else {
+                document.getElementById('speaker1Id').value = "cooper";
+                document.getElementById('speaker2Id').value = "kelly";
+            }
         } else {
             document.getElementById('GSVNode').style.display = "none";
             document.getElementById('fishAudio').style.display = "flex";
             document.getElementById('speaker1Title').innerText = "Speaker #1 ID:";
             document.getElementById('speaker2Title').innerText = "Speaker #2 ID:";
+        }
+        if (selectedLangValue === "ZH") {
+            document.getElementById('speaker1Id').value = "59cb5986671546eaa6ca8ae6f29f6d22";
+            document.getElementById('speaker2Id').value = "fe14fb17940d42fa8465741401bc309a";
+        }else {
+            document.getElementById('speaker1Id').value = "256e1a3007a74904a91d132d1e9bf0aa";
+            document.getElementById('speaker2Id').value = "0fb74894823f483c9b2f27cabaad841d";
         }
     })
 
