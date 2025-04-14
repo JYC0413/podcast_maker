@@ -674,7 +674,7 @@
         if (SpeechModel === "GSV") {
             const GSVNodeURL = document.getElementById('GSVNodeURL').value;
             const speaker1Name = document.getElementById('speaker1Id').value;
-            const speaker2Name = document.getElementById('speaker1Id').value;
+            const speaker2Name = document.getElementById('speaker2Id').value;
             tts_engine = {
                 "type": SpeechModel,
                 "url": GSVNodeURL
@@ -690,7 +690,7 @@
         }else {
             const fishAPIToken = document.getElementById('fishAPIToken').value;
             const speaker1ApiKey = document.getElementById('speaker1Id').value;
-            const speaker2ApiKey = document.getElementById('speaker1Id').value;
+            const speaker2ApiKey = document.getElementById('speaker2Id').value;
             tts_engine = {
                 "type": "Fish",
                 "token": fishAPIToken
