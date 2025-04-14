@@ -360,7 +360,7 @@
 <script>
     async function query(interval, taskId) {
         try {
-            const taskUrl = `http://159.138.158.109:8005/tasks/${taskId}`;
+            const taskUrl = `https://prime.jyccloud.cn/tasks/${taskId}`;
             const response = await fetch(taskUrl, {
                 method: 'GET',  // 使用 GET 方法
                 headers: {
@@ -375,7 +375,7 @@
                 if (taskDetails.status === "Finished") {
                     // 如果任务完成，停止轮询并显示视频
                     clearInterval(interval);
-                    const videoUrl = `http://159.138.158.109:8005/download/task_${taskId}.mp4`;
+                    const videoUrl = `https://prime.jyccloud.cn/download/task_${taskId}.mp4`;
                     displayVideo(videoUrl);
                 } else if (taskDetails.status === "error") {
                     // 如果任务出错，停止轮询并显示错误信息
@@ -636,7 +636,7 @@
 
             console.log(requestData);
 
-            const webhookUrl = 'http://159.138.158.109:8005/record_article';
+            const webhookUrl = 'https://prime.jyccloud.cn/record_article';
             const webhookResponse = await fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
