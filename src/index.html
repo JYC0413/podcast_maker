@@ -340,11 +340,11 @@
             </div>
             <div class="line">
                 <label id="speaker1Title" for="speaker1Id">Speaker #1 Name:</label>
-                <input type="text" id="speaker1Id" name="speaker1Id" value="cooper">
+                <input type="text" id="speaker1Id" name="speaker1Id" value="cooper" required>
             </div>
             <div class="line">
                 <label id="speaker2Title" for="speaker2Id">Speaker #2 Name:</label>
-                <input type="text" id="speaker2Id" name="speaker2Id" value="kelly">
+                <input type="text" id="speaker2Id" name="speaker2Id" value="kelly" required>
             </div>
         </div>
     </div>
@@ -355,7 +355,7 @@
             <input type="text" id="videoName" name="videoName" placeholder="Video Name(3-5 words are best)">
         </div>
         <textarea style="flex: 1;" class="prompt-textarea" rows="3" placeholder="podcast prompt(Optional)" id="podcastPrompt" name="podcastPrompt"></textarea>
-        <textarea style="flex: 3;" class="prompt-textarea" rows="10" placeholder="Copy and paste your story here" id="story" name="story"></textarea>
+        <textarea style="flex: 3;" class="prompt-textarea" rows="10" placeholder="Copy and paste your story here" id="story" name="story" required></textarea>
         <button class="button-large" type="submit">Submit</button>
     </div>
 </form>
@@ -599,8 +599,8 @@
         } else {
             document.getElementById('GSVNode').style.display = "none";
             document.getElementById('fishAudio').style.display = "flex";
-            document.getElementById('speaker1Title').innerText = "Speaker #1 API Key:";
-            document.getElementById('speaker2Title').innerText = "Speaker #2 API Key:";
+            document.getElementById('speaker1Title').innerText = "Speaker #1 ID:";
+            document.getElementById('speaker2Title').innerText = "Speaker #2 ID:";
         }
     })
 
