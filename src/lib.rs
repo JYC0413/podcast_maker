@@ -33,9 +33,10 @@ async fn handler(
                 .await;
 
             match res {
-                Ok(ref response) => {  // 注意这里使用 ref 关键字来避免值的移动
-                    // 获取响应体
-                    let body = response.bytes().await.unwrap();  // 获取响应体
+                Ok(response) => {
+                    // 立即提取响应体
+                    let body = response.bytes().await.unwrap();  // 直接消费 response
+
                     let status_code = response.status().as_u16();
 
                     // 处理返回响应
