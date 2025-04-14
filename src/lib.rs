@@ -54,8 +54,8 @@ async fn handler(
                         );
                     }
                 }
-                return;
-            }
+            return;
+        }
 
     let (content_type, html) = match _subpath.as_str() {
         "/index.html" | "/index" => ("text/html", include_str!("index.html").as_bytes().to_vec()),
