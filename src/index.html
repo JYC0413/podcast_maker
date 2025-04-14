@@ -604,6 +604,25 @@
         }
     })
 
+    const languageElement = document.getElementById('selectLanguage');
+
+    languageElement.addEventListener('change', function () {
+      const selectedLangOption = languageElement.options[languageElement.selectedIndex];
+      const selectedLangValue = selectedLangOption.value;
+      const selectedModelOption = speechModelElement.options[speechModelElement.selectedIndex];
+      const selectedModelValue = selectedModelOption.value;
+
+      if (selectedModelValue === "GSV") {
+          if (selectedLangValue === "ZH") {
+              document.getElementById('speaker1Id').value = "cctv_male";
+              document.getElementById('speaker2Id').value = "cctv_female";
+          }else {
+              document.getElementById('speaker1Id').value = "cooper";
+              document.getElementById('speaker2Id').value = "kelly";
+          }
+      }
+    })
+
     const resultTypeElement = document.getElementById('resultType');
 
     resultTypeElement.addEventListener('change', function () {
