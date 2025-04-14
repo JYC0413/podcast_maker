@@ -352,7 +352,7 @@
         <button class="button-large" type="submit">Submit</button>
     </div>
 </form>
-<div style="display: flex;flex-direction: column;justify-content: center;font-size: 2vw;text-align: center;" id="thanks">
+<div style="display: none;flex-direction: column;justify-content: center;font-size: 2vw;text-align: center;" id="thanks">
     <div id="thanks_title">Thank you for using Podcast Maker</div>
     <div id="taskStatus"></div>
     <div id="videoContainer"></div>
@@ -375,8 +375,7 @@
                 if (taskDetails.status === "Finished") {
                     // 如果任务完成，停止轮询并显示视频
                     clearInterval(interval);
-                    const videoUrl = `https://prime.jyccloud.cn/download/task_${taskId}.mp4`;
-                    displayVideo(videoUrl);
+                    displayVideo(taskId);
                 } else if (taskDetails.status === "error") {
                     // 如果任务出错，停止轮询并显示错误信息
                     clearInterval(interval);
@@ -411,11 +410,30 @@
         }
     }
 
-    function displayVideo(videoUrl) {
+    function displayVideo(task_id) {
         const videoContainer = document.getElementById('videoContainer');
         const videoElement = document.createElement('video');
+        videoElement.src = `https://prime.jyccloud.cn/download/task_${task_id}.mp4`;
         videoElement.setAttribute('controls', true);
-        videoElement.src = videoUrl;
+        videoElement.load();
+
+        videoElement.onerror = async () => {
+            // 如果加载视频失败，尝试加载音频
+            console.log("视频加载失败，尝试加载音频");
+            // 移除失败的视频元素
+            videoContainer.removeChild(videoElement);
+
+            // 创建并添加音频元素
+            const audioElement = document.createElement('audio');
+            audioElement.src = `http://159.138.158.109:8005/download/task_${task_id}.wav`;
+            audioElement.setAttribute('controls', true);
+            audioElement.load();
+
+            // 将音频元素添加到容器中
+            videoContainer.appendChild(audioElement);
+        };
+
+        // 将视频元素添加到容器中
         videoContainer.appendChild(videoElement);
     }
 
