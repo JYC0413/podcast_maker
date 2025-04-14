@@ -6,6 +6,13 @@
     <title>Podcast Maker</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        function redirectToBase() {
+            const currentUrl = window.location.href; // 获取当前 URL
+            // 去掉查询参数
+            window.location.href = currentUrl.split('?')[0]; // 跳转到基础 URL
+        }
+    </script>
     <style>
         label {
             white-space: nowrap;
@@ -356,6 +363,7 @@
     <div id="thanks_title">Thank you for using Podcast Maker</div>
     <div id="taskStatus"></div>
     <div id="videoContainer"></div>
+    <button class="button-large" style="font-size: 2vw;" onclick="redirectToBase()">Generate a new one</button>
 </div>
 <script>
     async function query(interval, taskId) {
