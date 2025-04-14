@@ -412,29 +412,49 @@
 
     function displayVideo(task_id) {
         const videoContainer = document.getElementById('videoContainer');
-        const videoElement = document.createElement('video');
-        videoElement.src = `https://prime.jyccloud.cn/download/task_${task_id}.mp4`;
-        videoElement.setAttribute('controls', true);
-        videoElement.load();
+        const videoUrl = `https://prime.jyccloud.cn/download/task_${task_id}.mp4`;
+        const audioUrl = `https://prime.jyccloud.cn/download/task_${task_id}.wav`;
 
-        videoElement.onerror = async () => {
-            // 如果加载视频失败，尝试加载音频
-            console.log("视频加载失败，尝试加载音频");
-            // 移除失败的视频元素
-            videoContainer.removeChild(videoElement);
+        // 预先检查视频文件是否存在
+        checkFileExists(videoUrl)
+            .then(exists => {
+                if (exists) {
+                    // 视频文件存在，创建视频元素
+                    const videoElement = document.createElement('video');
+                    videoElement.src = videoUrl;
+                    videoElement.setAttribute('controls', true);
+                    videoContainer.appendChild(videoElement);
+                } else {
+                    // 视频不存在，直接尝试音频
+                    console.log("视频不存在，尝试加载音频");
+                    const audioElement = document.createElement('audio');
+                    audioElement.src = audioUrl;
+                    audioElement.setAttribute('controls', true);
+                    videoContainer.appendChild(audioElement);
+                }
+            })
+            .catch(error => {
+                console.error("检查文件时出错:", error);
+                // 出错时默认尝试加载音频
+                const audioElement = document.createElement('audio');
+                audioElement.src = audioUrl;
+                audioElement.setAttribute('controls', true);
+                videoContainer.appendChild(audioElement);
+            });
+    }
 
-            // 创建并添加音频元素
-            const audioElement = document.createElement('audio');
-            audioElement.src = `http://159.138.158.109:8005/download/task_${task_id}.wav`;
-            audioElement.setAttribute('controls', true);
-            audioElement.load();
-
-            // 将音频元素添加到容器中
-            videoContainer.appendChild(audioElement);
-        };
-
-        // 将视频元素添加到容器中
-        videoContainer.appendChild(videoElement);
+    // 使用HEAD请求检查文件是否存在
+    function checkFileExists(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    resolve(response.ok); // 如果状态码为200-299，返回true
+                })
+                .catch(error => {
+                    console.error("检查文件失败:", error);
+                    resolve(false); // 如果请求失败，假设文件不存在
+                });
+        });
     }
 
     getTaskDetails();
