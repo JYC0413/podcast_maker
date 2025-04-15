@@ -592,7 +592,8 @@
         const selectedValue = selectedOption.value;
         const selectedLangOption = languageElement.options[languageElement.selectedIndex];
         const selectedLangValue = selectedLangOption.value;
-
+        console.log(selectedValue)
+        console.log(selectedLangValue)
         if (selectedValue === "GSV") {
             document.getElementById('GSVNode').style.display = "flex";
             document.getElementById('fishAudio').style.display = "none";
@@ -610,13 +611,13 @@
             document.getElementById('fishAudio').style.display = "flex";
             document.getElementById('speaker1Title').innerText = "Speaker #1 ID:";
             document.getElementById('speaker2Title').innerText = "Speaker #2 ID:";
-        }
-        if (selectedLangValue === "ZH") {
-            document.getElementById('speaker1Id').value = "59cb5986671546eaa6ca8ae6f29f6d22";
-            document.getElementById('speaker2Id').value = "fe14fb17940d42fa8465741401bc309a";
-        }else {
-            document.getElementById('speaker1Id').value = "256e1a3007a74904a91d132d1e9bf0aa";
-            document.getElementById('speaker2Id').value = "0fb74894823f483c9b2f27cabaad841d";
+            if (selectedLangValue === "ZH") {
+                document.getElementById('speaker1Id').value = "59cb5986671546eaa6ca8ae6f29f6d22";
+                document.getElementById('speaker2Id').value = "fe14fb17940d42fa8465741401bc309a";
+            }else {
+                document.getElementById('speaker1Id').value = "256e1a3007a74904a91d132d1e9bf0aa";
+                document.getElementById('speaker2Id').value = "0fb74894823f483c9b2f27cabaad841d";
+            }
         }
     })
 
