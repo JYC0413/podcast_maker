@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podcast Maker</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         function redirectToBase() {
@@ -353,7 +353,7 @@
                     <option value="1">Black & White Cat</option>
                 </select>
             </div>
-            <img id="vtuberImg" style="width: 100%;" src="/human.jpg"/>
+            <img id="vtuberImg" style="width: 100%;" src="human.jpg"/>
         </div>
     </div>
     <div style="margin:1.25vw;display: flex;flex-direction: column;" class="part-side section">
@@ -662,7 +662,7 @@
 
     virtualElement.addEventListener('change', function () {
         const selectedVirtual = virtualElement.value;
-        document.getElementById('vtuberImg').src = `/${selectedVirtual === "0"? "human" : "cat"}.jpg`;
+        document.getElementById('vtuberImg').src = `${selectedVirtual === "0"? "human" : "cat"}.jpg`;
     })
 
     document.getElementById('prForm').addEventListener('submit', async function (event) {
