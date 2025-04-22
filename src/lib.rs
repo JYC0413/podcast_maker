@@ -21,6 +21,8 @@ async fn handler(
     let (content_type, html) = match _subpath.as_str() {
         "/index.html" | "/index" => ("text/html", include_str!("index.html").as_bytes().to_vec()),
         "/favicon.ico" => ("image/x-icon", include_bytes!("favicon.ico").to_vec()),
+        "/cat.jpg" => ("image/jpeg", include_bytes!("cat.jpg").to_vec()),
+        "/human.jpg" => ("image/jpeg", include_bytes!("human.jpg").to_vec()),
         _ => ("text/html", include_str!("index.html").as_bytes().to_vec()),
     };
     send_response(
